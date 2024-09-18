@@ -1,0 +1,29 @@
+name: Build Docker Image By Git Repo
+on:
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        description: 'Fill git repo url with Dockerfile'
+        required: true
+        default: 'https://github.com/foxglove/nuscenes2mcap.git'  # Default repo with Dockerfile
+
+jobs:
+  pull_and_package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone git repo and build docker image
+        run: |
+          repo_url="${{ github.event.inputs.repo_url }}"
+          git clone ${repo_url} repo
+          cd repo
+          docker build --platform=x86_64 . -t repo:latest
+
+      - name: Upload image
+        uses: ishworkh/docker-image-artifact-upload@v2.0.1
+        with:
+          image: "repo:latest"
+          retention_days: "1"
