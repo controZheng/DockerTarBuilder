@@ -5,7 +5,7 @@ FROM python:3.10.10
 WORKDIR /opt/llm
 
 # download dependencies and packages
-COPY requirements.txt /tmp/requirements.txt
+#COPY requirements.txt /tmp/requirements.txt
 
 # build environment
 ENV PYTHONPATH=/opt/llm
@@ -25,8 +25,8 @@ RUN set -evx \
             && apt-get install wget -y \
             && apt-get install net-tools -y \
             && apt-get install vim -y --allow-unauthenticated \
-            && apt-get clean 
-            
+            && apt-get clean
+
 # pip install
 RUN set -evx \
             && pip install -r /tmp/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/ --no-cache-dir
