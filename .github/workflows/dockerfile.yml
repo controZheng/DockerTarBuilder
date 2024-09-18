@@ -5,7 +5,7 @@ on:
       repo_url:
         description: 'Fill git repo url with Dockerfile'
         required: true
-        default: 'https://github.com/foxglove/nuscenes2mcap.git'  # Default repo with Dockerfile
+        default: 'https://github.com/controZheng/DockerTarBuilder.git'  # Default repo with Dockerfile
 
 jobs:
   pull_and_package:
