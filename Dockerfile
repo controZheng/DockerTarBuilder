@@ -5,7 +5,7 @@ FROM python:3.10.10
 WORKDIR /opt/llm
 
 # download dependencies and packages
-#COPY requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 
 # build environment
 ENV PYTHONPATH=/opt/llm
